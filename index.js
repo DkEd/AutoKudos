@@ -115,3 +115,10 @@ app.get('/stats', async (req, res) => {
 
 setInterval(poll, 34 * 60 * 1000);
 app.listen(process.env.PORT || 3000, () => console.log("AutoKudos Bot Active 🏃‍♂️"));
+
+// Self-ping every 10 minutes
+setInterval(() => {
+  axios.get('https://autokudos.onrender.com/stats')
+    .then(() => console.log('Self-ping successful: Staying awake! ☕'))
+    .catch(err => console.error('Self-ping failed:', err.message));
+}, 10 * 60 * 1000); 
